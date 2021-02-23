@@ -1,0 +1,25 @@
+pipeline {
+    agent any
+    
+    
+stages {
+
+   stage ('Build Stage') {
+       steps {
+          sh '''
+       cd helloworld
+        mvn clean install
+      '''
+       }
+     }
+     
+     stage ('QA Stage') {
+         steps {
+             sh '''
+        cd helloworld
+           mvn clean install sonar:sonar
+      '''
+     }
+    }
+   }
+ }
